@@ -3,8 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:prism="http://prismlibrary.com/"
         prism:ViewModelLocator.AutoWireViewModel="True"
-        Title="{Binding Title}" Height="350" Width="525">
-    <Grid>
-        <ContentControl prism:RegionManager.RegionName="ContentRegion" />
-    </Grid>
+        Title="{Binding Title.Value}" Height="350" Width="525">
+    <StackPanel>
+        <PasswordBox/>
+        <Button Content="OK" Command="{Binding OkCommand}"/>
+    </StackPanel>
 </Window>

@@ -1,19 +1,22 @@
-﻿using Prism.Mvvm;
+﻿using System;
+using System.Diagnostics;
+using Prism.Mvvm;
+using Reactive.Bindings;
 
 namespace SecureStringTest.ViewModels
 {
     public class MainWindowViewModel : BindableBase
     {
-        private string _title = "Prism Application";
-        public string Title
-        {
-            get { return _title; }
-            set { SetProperty(ref _title, value); }
-        }
+        public ReactiveCommand OkCommand { get; } = new ReactiveCommand();
+
+        public ReactiveProperty<string> Title { get; } = new ReactiveProperty<string>("Prism Application");
 
         public MainWindowViewModel()
         {
-
+            OkCommand.Subscribe(_ =>
+            {
+                Debug.WriteLine("OKボタンがクリックされました。");
+            });
         }
     }
 }
