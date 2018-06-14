@@ -2,9 +2,8 @@
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Security;
-using Newtonsoft.Json;
 
-namespace CommonClassLib.Extensions
+namespace SecureStringTest
 {
     public static class SecureStringExtension
     {
