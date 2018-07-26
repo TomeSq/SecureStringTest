@@ -64,8 +64,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Behaviors\PasswordBoxBehavior.cs" />
+    <Compile Include="Behaviors\PasswordBoxBindingBehavior.cs" />
     <Compile Include="Behaviors\PasswordChangedBehavior.cs" />
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Messenger.cs" />
     <Compile Include="SecureStringExtension.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">

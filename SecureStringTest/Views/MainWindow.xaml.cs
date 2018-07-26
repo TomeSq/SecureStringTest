@@ -1,4 +1,8 @@
-﻿using System.Windows;
+﻿using System.Diagnostics;
+using System.Security;
+using System.Windows;
+using Prism.Events;
+using SecureStringTest.ViewModels;
 
 namespace SecureStringTest.Views
 {
@@ -10,6 +14,12 @@ namespace SecureStringTest.Views
         public MainWindow()
         {
             InitializeComponent();
+
+            Messenger.Instance.GetEvent<PubSubEvent<SecureString>>().Subscribe(x =>
+            {
+                //                this.TestPassword.Password = SecureStringExtension.SecureStringToText(x);
+                Debug.WriteLine(SecureStringExtension.SecureStringToText(x));
+            });
         }
     }
 }

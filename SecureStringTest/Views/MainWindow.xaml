@@ -7,9 +7,10 @@
         prism:ViewModelLocator.AutoWireViewModel="True"
         Title="{Binding Title.Value}" Height="350" Width="525">
     <StackPanel>
-        <PasswordBox DataContext="{Binding Password, Mode=TwoWay}">
+        <PasswordBox x:Name="TestPassword" DataContext="{Binding Password, Mode=TwoWay}">
             <i:Interaction.Behaviors>
                 <behaviors:PasswordChangedBehavior />
+                <!--<behaviors:PasswordBoxBindingBehavior BoundPassword="{Binding Password, Mode=TwoWay}"/>-->
             </i:Interaction.Behaviors>
         </PasswordBox>
 

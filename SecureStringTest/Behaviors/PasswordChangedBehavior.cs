@@ -16,7 +16,9 @@ namespace SecureStringTest.Behaviors
         private void AssociatedObject_PasswordChanged(object sender, RoutedEventArgs e)
         {
             if (AssociatedObject.SecurePassword != null)
+            {
                 AssociatedObject.DataContext = AssociatedObject.SecurePassword.Copy();
+            }
         }
 
         protected override void OnDetaching()

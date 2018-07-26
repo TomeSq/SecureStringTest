@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Security;
+using Prism.Events;
 using Prism.Mvvm;
 using Reactive.Bindings;
 
@@ -28,38 +29,29 @@ namespace SecureStringTest.ViewModels
             }
         }
 
-        public string _plainPassword = string.Empty;
-
-        public string PlainPassword
-        {
-            get
-            {
-                return _plainPassword;
-            }
-            set
-            {
-                _plainPassword = value;
-            }
-        }
-
 
         public MainWindowViewModel()
         {
-            OkCommand.Subscribe(_ =>
+            foreach (char c in "ABCDEFG")
+            {
+                this.Password.AppendChar(c);
+            }
+
+            this.OkCommand.Subscribe(_ =>
             {
                 Debug.WriteLine("OKボタンがクリックされました。");
                 if(this.Password.Length > 0)
                 {
-                    Debug.Write(SecureStringExtension.SecureStringToText(this.Password));
+                    Debug.WriteLine(SecureStringExtension.SecureStringToText(this.Password));
                 }
             });
 
 
-            ResetCommand.Subscribe(_ =>
+            this.ResetCommand.Subscribe(_ =>
             {
+                Messenger.Instance.GetEvent<PubSubEvent<SecureString>>().Publish(Password);
                 this.Password.Clear();
             });
-
-    }
+        }
     }
 }
