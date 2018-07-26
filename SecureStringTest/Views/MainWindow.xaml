@@ -16,5 +16,6 @@
 
         <Button Content="OK" Command="{Binding OkCommand}"/>
         <Button Content="RESET" Command="{Binding ResetCommand}"/>
+        <Button Content="SetPassword" Command="{Binding SetPasswordCommand}"/>
     </StackPanel>
 </Window>

@@ -13,6 +13,8 @@ namespace SecureStringTest.ViewModels
 
         public ReactiveCommand ResetCommand { get; } = new ReactiveCommand();
 
+        public ReactiveCommand SetPasswordCommand { get; } = new ReactiveCommand();
+
         public ReactiveProperty<string> Title { get; } = new ReactiveProperty<string>("Prism Application");
 
         public SecureString _password = new SecureString();
@@ -25,18 +27,13 @@ namespace SecureStringTest.ViewModels
             }
             set
             {
-                _password = value;
+                this.SetProperty(ref this._password, value);
             }
         }
 
 
         public MainWindowViewModel()
         {
-            foreach (char c in "ABCDEFG")
-            {
-                this.Password.AppendChar(c);
-            }
-
             this.OkCommand.Subscribe(_ =>
             {
                 Debug.WriteLine("OKボタンがクリックされました。");
@@ -49,8 +46,17 @@ namespace SecureStringTest.ViewModels
 
             this.ResetCommand.Subscribe(_ =>
             {
-                Messenger.Instance.GetEvent<PubSubEvent<SecureString>>().Publish(Password);
                 this.Password.Clear();
+            });
+
+            this.SetPasswordCommand.Subscribe(_ =>
+            {
+                this.Password.Clear();
+                foreach (char c in "ABCDEFG")
+                {
+                    this.Password.AppendChar(c);
+                }
+                Messenger.Instance.GetEvent<PubSubEvent<SecureString>>().Publish(Password);
             });
         }
     }

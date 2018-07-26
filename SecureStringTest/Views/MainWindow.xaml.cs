@@ -17,7 +17,7 @@ namespace SecureStringTest.Views
 
             Messenger.Instance.GetEvent<PubSubEvent<SecureString>>().Subscribe(x =>
             {
-                //                this.TestPassword.Password = SecureStringExtension.SecureStringToText(x);
+                this.TestPassword.Password = SecureStringExtension.SecureStringToText(x);
                 Debug.WriteLine(SecureStringExtension.SecureStringToText(x));
             });
         }
